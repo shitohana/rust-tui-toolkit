@@ -1,0 +1,12 @@
+#!/bin/bash
+# bin/update-dotfiles
+
+cd "$HOME/dotfiles"
+
+# Pull latest changes
+git pull
+
+# Re-run installation
+./install.sh
+
+echo "Dotfiles updated!"

@@ -1,0 +1,115 @@
+#!/usr/bin/env zsh
+
+# Define colors for better output formatting
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
+# Define tools, their descriptions and GitHub links
+typeset -A TOOLS GITHUB_LINKS
+TOOLS=(
+    uv "Fast Python package installer and resolver"
+    wthrr "Command-line weather tool with beautiful formatting"
+    xsv "Fast CSV command-line toolkit"
+    fd "Fast and user-friendly alternative to 'find'"
+    bat "Cat clone with syntax highlighting and Git integration"
+    pueue "Command-line task management tool for sequential and parallel execution"
+    rip "Safe and feature-rich alternative to rm (rm-improved)"
+    eza "Modern replacement for ls with color support and Git integration"
+    crabz "Fast, multi-threaded file compression/decompression tool"
+    atuin "Magical shell history with search, sync and stats"
+    yazi "Terminal file manager with GPU rendering"
+    gitui "Blazing fast terminal UI for Git"
+    zoxide "Smarter cd command, inspired by z and autojump"
+    ox "The fast, innovative TUI text editor for your terminal"
+)
+
+GITHUB_LINKS=(
+    uv "https://github.com/astral-sh/uv"
+    wthrr "https://github.com/ttytm/wthrr-the-weathercrab"
+    xsv "https://github.com/BurntSushi/xsv"
+    fd "https://github.com/sharkdp/fd"
+    bat "https://github.com/sharkdp/bat"
+    pueue "https://github.com/Nukesor/pueue"
+    rip "https://github.com/nivekuil/rip"
+    eza "https://github.com/eza-community/eza"
+    crabz "https://github.com/sstadick/crabz"
+    atuin "https://github.com/atuinsh/atuin"
+    yazi "https://github.com/sxyazi/yazi"
+    gitui "https://github.com/gitui-org/gitui"
+    zoxide "https://github.com/ajeetdsouza/zoxide"
+    ox "https://github.com/curlpipe/ox"
+)
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" &> /dev/null
+}
+
+# Function to print a header
+print_header() {
+    echo -e "\n${BOLD}${BLUE}$1${NC}"
+    echo -e "${BLUE}$(printf '─%.0s' {1..60})${NC}"
+}
+
+# Function to print a divider
+print_divider() {
+    echo -e "${BLUE}$(printf '┄%.0s' {1..60})${NC}"
+}
+
+# Function to print tool info
+print_tool_info() {
+    local command=$1
+    local description=$2
+    local github_link=${GITHUB_LINKS[$command]}
+
+    if command_exists "$command"; then
+        echo -e "  ${GREEN}✓${NC} ${BOLD}${command}${NC}"
+        echo -e "    ${description}"
+        echo -e "    ${CYAN}${github_link}${NC}"
+    else
+        echo -e "  ${RED}✗${NC} ${BOLD}${command}${NC} ${RED}(Not installed)${NC}"
+        echo -e "    ${description}"
+        echo -e "    ${CYAN}${github_link}${NC}"
+    fi
+}
+
+# Main script
+clear
+echo
+echo -e "${BOLD}${BLUE}╭───────────────────────────────────────────────────────╮${NC}"
+echo -e "${BOLD}${BLUE}│               RUST TUI TOOLKIT OVERVIEW               │${NC}"
+echo -e "${BOLD}${BLUE}╰───────────────────────────────────────────────────────╯${NC}"
+echo
+
+# Count installed and missing tools
+typeset -i installed=0 missing=0
+
+# Loop through the tools and display information
+for tool description in "${(@kv)TOOLS}"; do
+    print_tool_info "$tool" "$description"
+    print_divider
+
+    if command_exists "$tool"; then
+        ((installed++))
+    else
+        ((missing++))
+    fi
+done
+
+# Print summary
+echo
+echo -e "${BOLD}${BLUE}╭───────────────────────────────────────────────────────╮${NC}"
+echo -e "${BOLD}${BLUE}│                       SUMMARY                         │${NC}"
+echo -e "${BOLD}${BLUE}╰───────────────────────────────────────────────────────╯${NC}"
+echo
+echo -e "  Total tools: ${BOLD}$((installed + missing))${NC}"
+echo -e "  ${GREEN}Installed:${NC} ${BOLD}${installed}${NC}"
+echo -e "  ${RED}Missing:${NC} ${BOLD}${missing}${NC}"
+echo
+echo -e "${YELLOW}These modern command-line tools can significantly improve your terminal workflow.${NC}"
+echo

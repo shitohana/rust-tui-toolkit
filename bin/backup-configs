@@ -1,0 +1,49 @@
+#!/bin/bash
+# bin/backup-configs
+
+set -e
+
+BACKUP_DIR="$HOME/.dotfiles-backups/$(date +%Y%m%d%H%M%S)"
+DOTFILES_DIR="$HOME/dotfiles"
+
+echo "Creating backup of configurations at $BACKUP_DIR"
+mkdir -p "$BACKUP_DIR"
+
+backup_if_exists() {
+    local file="$1"
+    local backup_path="$BACKUP_DIR/$(dirname "${file#$HOME/}")"
+
+    if [ -e "$file" ]; then
+        mkdir -p "$backup_path"
+        cp -R "$file" "$backup_path"
+        echo "Backed up: $file"
+    fi
+}
+
+# Backup important configuration files
+backup_if_exists "$HOME/.zshrc"
+backup_if_exists "$HOME/.zshenv"
+backup_if_exists "$HOME/.oh-my-zsh/custom"
+backup_if_exists "$HOME/.config/atuin"
+backup_if_exists "$HOME/.config/bat"
+backup_if_exists "$HOME/.config/fd"
+backup_if_exists "$HOME/.config/gitui"
+backup_if_exists "$HOME/.config/pueue"
+backup_if_exists "$HOME/.config/yazi"
+backup_if_exists "$HOME/.config/zoxide"
+backup_if_exists "$HOME/.config/uv"
+backup_if_exists "$HOME/.config/rip"
+backup_if_exists "$HOME/.condarc"
+
+echo "Backup complete!"
+echo "Backup location: $BACKUP_DIR"
+
+# Add the backup to git if the DOTFILES_DIR exists and backup_git flag is set
+if [ "$1" == "--git" ] && [ -d "$DOTFILES_DIR/.git" ]; then
+    TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+    cd "$DOTFILES_DIR"
+    git add -A
+    git commit -m "Backup configurations - $TIMESTAMP"
+    git push
+    echo "Changes committed and pushed to git repository."
+fi

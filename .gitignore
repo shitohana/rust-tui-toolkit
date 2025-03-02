@@ -1,0 +1,8 @@
+configs/zsh/custom/plugins/you-should-use/
+configs/zsh/custom/plugins/zsh-autosuggestions/
+configs/zsh/custom/plugins/zsh-completions/
+configs/zsh/custom/plugins/zsh-history-substring-search/
+configs/zsh/custom/plugins/zsh-syntax-highlighting/
+configs/zsh/custom/themes/powerlevel10k/
+Brewfile
+configs/zsh/.zshrc
