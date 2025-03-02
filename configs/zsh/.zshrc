@@ -1,3 +1,4 @@
+export DOTFILES_DIR=/Users/shitohana/Desktop/rust-tui-toolkit
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -392,5 +393,8 @@ if [[ -o zle ]]; then
     [[ "${+functions[compdef]}" -ne 0 ]] && \compdef __zoxide_z_complete z
 fi
 
+
+
 eval "$(zoxide init zsh)"
+
 source "$DOTFILES_DIR/configs/zsh/custom/aliases.zsh"
