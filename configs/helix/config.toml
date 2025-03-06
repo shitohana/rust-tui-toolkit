@@ -1,0 +1,25 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+mouse = true
+middle-click-paste = false
+auto-format = false
+clipboard-provider = "termcode"
+auto-pairs = false
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+
+[editor.indent-guides]
+render = true
+character = "┆"
+skip-levels = 1

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Define a simple array of tools and commands
 # Format: "package:command"
-tools="uv:uv wthrr:wthrr xsv:xsv fd:fd bat:bat pueue:pueue rm-improved:rip eza:eza crabz:crabz atuin:atuin yazi:yazi gitui:gitui zoxide:zoxide ox:ox"
+tools="uv:uv wthrr:wthrr xsv:xsv fd:fd bat:bat pueue:pueue rm-improved:rip eza:eza crabz:crabz atuin:atuin yazi:yazi gitui:gitui zoxide:zoxide ox:ox helix:helix"
 
 # Check tools installation status
 installed_tools=""
@@ -95,6 +95,10 @@ BREWFILE
         "ox")
             echo "brew \"ox\" # Text editor" >> Brewfile
             echo "- ox (Text editor)"
+            ;;
+        "helix")
+            echo "brew \"helix\" # Text editor" >> Brewfile
+            echo "- helix (Text editor)"
             ;;
         esac
     done

@@ -86,6 +86,9 @@ create_symlink "$DOTFILES_DIR/configs/rip/config" "$HOME/.config/rip/config"
 # ox config
 create_symlink "$DOTFILES_DIR/configs/ox/.oxrc" "$HOME/.oxrc"
 
+# helix config
+create_symlink "$DOTFILES_DIR/configs/helix/config.toml" "$HOME/.config/helix/config.toml"
+
 # Custom scripts
 for script in "$DOTFILES_DIR/bin/"*; do
     if [ -f "$script" ]; then

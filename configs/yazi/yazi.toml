@@ -4,5 +4,5 @@ sort_by = "btime"
 show_symlink = true
 
 [opener]
-edit = [{ run = "$(which ox) $@", block = true, for = "unix" }]
+edit = [{ run = "$(which hx) $@", block = true, for = "unix" }]
 open = [{ run = 'xdg-open "$@"', desc = "Open" }]
